@@ -31,15 +31,15 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Preço:</span>
-                <input type="number" id="price" name="price" class="form-control" placeholder="preço" aria-label="Titulo" aria-describedby="basic-addon1">
+                <input type="number" id="price" name="price" class="form-control" placeholder="preço" aria-label="price" aria-describedby="basic-addon1">
             </div><br>
 
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Ano de Lançamento:</span>
-                <input type="number" name="year" id="year" placeholder="Ano de Laçamento" class="form-control"  aria-label="Titulo" aria-describedby="basic-addon1">
+                <span class="input-group-text" id="basic-addon1">Preço:</span>
+                <input type="number" id="year" name="year" class="form-control" placeholder="year" aria-label="year" aria-describedby="basic-addon1">
             </div><br>
 
-           <button type="button" class="btn btn-primary">Cadastrar</button>
+           <button type="button" class="btn btn-primary" onclick="createGame()" >Cadastrar</button>
         </div>
 
       </div>
@@ -64,14 +64,29 @@
 
           var titleInput = document.getElementById("title");
           var priceInput = document.getElementById("price");
-          var yearInput = document.getElementById("title");
+          var yearInput = document.getElementById("year");
 
           var game = {
 
               title: titleInput.value,
-              price: priceInput.value,
-              year: yearInput
+              year: yearInput.value,
+              price: priceInput.value
           }
+
+          axios.post('http://localhost:8000/game',game)
+
+          .then(response =>{
+
+            if(response.status == 200){
+
+                alert('Game Cadastrado');
+
+            }
+          }).catch(err =>{
+
+               console.log(err);
+          });
+
 
 
 
