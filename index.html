@@ -10,7 +10,7 @@
 
   <div class="container"> 
 
-   <div class="card col-md-4 mt-3">
+   <div class="card col-md-6 mt-3">
      <div class="card-header" >
         <h4 class="card-title">Lista de Games(rota get) </h4>
      </div>
@@ -92,6 +92,21 @@
 
        }
 
+       function deleteGame(ListItem){
+
+           var id = ListItem.getAttribute("data-id");
+           axios.delete("http://localhost:8000/game/"+id).then(response =>{
+            
+             alert("Game deletado");
+
+           }).catch(err =>{
+
+              console.log(err);
+
+           });
+
+       }
+
 
 
 
@@ -107,13 +122,40 @@
             games.forEach(game => {
 
                 var item = document.createElement("li");
+
+                 //atributos customizaveis
+                 
+                 item.setAttribute('data-id',    game.id);
+                 item.setAttribute('data-title', game.title);
+                 item.setAttribute('data-price', game.price);
+                 item.setAttribute('data-year',  game.year);
+
+
+
+
                 item.innerHTML = ' ID: ' + game.id + "| TITULO: " + game.title + " | VALOR: R$: " + game.price;
                 item.classList.add('list-group-item');
+
+                //adicionando o botão de deletar
+                
+                var deleteBtn = document.createElement('button');
+                deleteBtn.style ='margin-left:5%;';
+                deleteBtn.innerHTML ='Deletar';
+                deleteBtn.addEventListener('click',function(){
+                    deleteGame(item);
+                });
+                deleteBtn.classList.add('btn-danger');
+
+
+                item.appendChild(deleteBtn);
+
+
                 list.appendChild(item);
+               
                 
             });
 
-            console.log(response);
+          
 
         }).catch(error =>{
 
