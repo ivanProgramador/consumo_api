@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumo de api</title>
+</head>
+<body>
+    <!--Axios é uma biblioteca especializada em consumo de apis eu instalei ela pelo cdn 
+    mas ela tambem pode ser instalada pelo npm ou em um arquivo local-->
+
+
+    <!---Interface-->
+
+
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    axios.get("http://localhost:8080/games")
+         .then(response=>{
+            console.log(response);
+         }).catch(error=>{
+            console.log(error);
+             
+         });
+</script>
+</html>
