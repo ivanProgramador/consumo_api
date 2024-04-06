@@ -58,12 +58,23 @@
     axios.get("http://localhost:8080/games").then(response=>{
 
         var games = response.data;
-
         var list = document.getElementById("games");
        
         games.forEach(game=>{
 
             var item = document.createElement("li");
+
+            //gradando atributos customizados
+            
+            item.setAttribute("data-id",game.id);
+            item.setAttribute("data-title",game.title);
+            item.setAttribute("data-year",game.year);
+            item.setAttribute("data-price",game.price);
+
+
+
+
+
             item.innerHTML = game.id + " - " + game.title + "- $ " + game.price;
             list.appendChild(item);
 
