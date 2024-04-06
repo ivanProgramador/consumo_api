@@ -16,10 +16,10 @@
     <ul id="games"></ul>
     <hr>
     <h4>Novo Game</h4>
-
-    <input type="text" name="title" id="title" placeholder="titulo" ><br>
-    <input type="number" name="year" id="year" placeholder="Ano"><br>
-    <input type="number" name="price" id="price" placeholder="preço"><br>
+    
+    <input type="text" name="title" id="title" placeholder="titulo" data-title ><br>
+    <input type="number" name="year" id="year" placeholder="Ano" data-year ><br>
+    <input type="number" name="price" id="price" placeholder="preço" data-price ><br>
     <button type="button" onclick="createGame()">Criar</button>
 
 
@@ -64,21 +64,31 @@
 
             var item = document.createElement("li");
 
-            //gradando atributos customizados
+            //gerando atributos customizados
             
             item.setAttribute("data-id",game.id);
             item.setAttribute("data-title",game.title);
             item.setAttribute("data-year",game.year);
             item.setAttribute("data-price",game.price);
 
-
-
-
-
             item.innerHTML = game.id + " - " + game.title + "- $ " + game.price;
+
+            var deleteBtn = document.createElement("button");
+            deleteBtn.innerHTML = "Deletar";
+            item.appendChild(deleteBtn);
             list.appendChild(item);
+            deleteBtn.addEventListener('click',function(){
+                deleteGame(item)
+            });
 
         });
+
+
+        function deleteGame(listItem){
+
+            var id = listItem.getAttribute("data-id");
+            console.log(id);
+        }
 
 
 
